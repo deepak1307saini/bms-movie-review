@@ -22,6 +22,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/movies/{movieId}/reviews").permitAll()
                 .antMatchers(HttpMethod.PUT,"/movies/{movieId}/reviews").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/movies/{movieId}/reviews").permitAll()
+                .antMatchers(HttpMethod.GET,"/movies").permitAll()
+                .antMatchers(HttpMethod.GET,"/movies/{movieId}").permitAll()
+                .antMatchers(HttpMethod.POST,"/movies").permitAll()
+                .antMatchers(HttpMethod.PUT,"/movies/{movieId}").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/movies/{movieId}").permitAll()
                 .anyRequest().authenticated();
     }
 }

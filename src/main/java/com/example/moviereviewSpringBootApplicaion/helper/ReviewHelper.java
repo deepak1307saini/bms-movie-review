@@ -6,10 +6,8 @@ import com.example.moviereviewSpringBootApplicaion.exception.DuplicateRecordExce
 import com.example.moviereviewSpringBootApplicaion.exception.NotFoundException;
 import com.example.moviereviewSpringBootApplicaion.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -18,9 +16,16 @@ public class ReviewHelper {
     @Autowired
     ReviewRepository reviewRepository;
 
-    public Review toEntity(ReviewDto reviewDto){
+    @Autowired
+    MovieHelper movieHelper;
+
+    public void movieCheck(long movieId){
+        movieHelper.checkMovie(movieId);
+    }
+
+    public Review toEntity(ReviewDto reviewDto, long movieId){
         return Review.builder()
-                .movieId(reviewDto.getMovieId())
+                .movieId(movieId)
                 .userId(reviewDto.getUserId())
                 .movieRating((reviewDto.getMovieRating()))
                 .comment(reviewDto.getComment())
@@ -29,7 +34,6 @@ public class ReviewHelper {
     }
 
     public void canAdd(long movieId,long userId){
-        System.out.println("Deepak "+reviewRepository.existsByMovieIdAndUserId(movieId, userId));
         if (reviewRepository.existsByMovieIdAndUserId(movieId, userId)){
             throw new DuplicateRecordException(String.format("Review already exists for movie id : " + movieId + " by userId " + userId));
         }

@@ -24,6 +24,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<ReviewResponseDto> getAllReviews(long movieId) {
+        reviewHelper.movieCheck(movieId);
         return reviewRepository.findByMovieId(movieId)
                 .stream()
                 .map(ReviewResponseDto::new)
@@ -32,14 +33,16 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public ReviewResponseDto getReview(long movieId, long userId) {
+        reviewHelper.movieCheck(movieId);
         Review review = reviewHelper.getReview(movieId, userId);
         return new ReviewResponseDto(review);
     }
 
     @Override
     public ResponseDto addReview(long movieId, ReviewDto reviewDto) {
+        reviewHelper.movieCheck(movieId);
         reviewHelper.canAdd(movieId, reviewDto.getUserId());
-        Review review = reviewHelper.toEntity(reviewDto);
+        Review review = reviewHelper.toEntity(reviewDto,movieId);
         review.setDateTime(new Date());
         reviewRepository.save(review);
 
@@ -48,6 +51,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public ResponseDto editReview(long movieId, ReviewDto reviewDto) {
+        reviewHelper.movieCheck(movieId);
         reviewHelper.canEdit(movieId, reviewDto.getUserId());
 
         Review review = reviewHelper.getReview(movieId, reviewDto.getUserId());
@@ -59,7 +63,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public ResponseDto deleteReview(long movieId, long userId) {
-
+        reviewHelper.movieCheck(movieId);
         reviewHelper.canDelete(movieId, userId);
         Review review = reviewHelper.getReview(movieId, userId);
         reviewRepository.delete(review);

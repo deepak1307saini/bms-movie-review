@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Max;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,6 +20,7 @@ import java.util.Date;
 @Document(collection = "reviews")
 public class Review {
     private long movieId;
+
     private long userId;
     private String comment;
     @Max(10)

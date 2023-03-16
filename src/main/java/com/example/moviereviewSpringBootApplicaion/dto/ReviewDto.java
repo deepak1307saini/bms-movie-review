@@ -1,6 +1,5 @@
 package com.example.moviereviewSpringBootApplicaion.dto;
 
-import com.example.moviereviewSpringBootApplicaion.entity.Review;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
