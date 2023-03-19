@@ -21,33 +21,33 @@ public class MovieController {
 
     @PostMapping
     public ResponseEntity<?> add(@RequestBody MovieDto movieDto) {
-        MovieResponseDto movieResponseDto= movieService.addMovie(movieDto);
+        MovieResponseDto movieResponseDto = movieService.addMovie(movieDto);
         return new ResponseEntity<>(movieResponseDto, HttpStatus.OK);
     }
 
 
     @GetMapping("/{movieId}")
     public ResponseEntity<?> getMovie(@PathVariable Long movieId) {
-        MovieResponseDto movieResponseDto= movieService.getMovie(movieId);
+        MovieResponseDto movieResponseDto = movieService.getMovie(movieId);
         return new ResponseEntity<>(movieResponseDto, HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<?> getMovies() {
-       List< MovieResponseDto> movieResponseDtos = movieService.getMovies();
+        List<MovieResponseDto> movieResponseDtos = movieService.getMovies();
         return new ResponseEntity<>(movieResponseDtos, HttpStatus.OK);
     }
 
     @DeleteMapping("/{movieId}")
     public ResponseEntity<?> deleteMovie(@PathVariable Long movieId) {
-        ResponseDto responseDto= movieService.deleteMovie(movieId);
+        ResponseDto responseDto = movieService.deleteMovie(movieId);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @PutMapping("/{movieId}")
-    public ResponseEntity<?> updateMovie(@PathVariable long movieId,@Valid @RequestBody MovieDto movieDto) {
+    public ResponseEntity<?> updateMovie(@PathVariable long movieId, @Valid @RequestBody MovieDto movieDto) {
 
-        ResponseDto responseDto= movieService.updateMovie(movieId, movieDto);
+        ResponseDto responseDto = movieService.updateMovie(movieId, movieDto);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 }

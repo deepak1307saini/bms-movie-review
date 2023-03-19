@@ -18,14 +18,14 @@ public class ReviewResponseDto {
     @Max(10)
     private Integer movieRating;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateTime;
     private long userId;
 
-    public ReviewResponseDto(Review review){
-        this.comment=review.getComment();
-        this.dateTime=review.getDateTime();
-        this.movieRating=review.getMovieRating();
-        this.userId=review.getUserId();
+    public ReviewResponseDto(Review review) {
+        this.comment = review.getComment();
+        this.dateTime = review.getDateTime();
+        this.movieRating = review.getMovieRating();
+        this.userId = review.getUserId();
     }
 }

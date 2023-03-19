@@ -19,13 +19,13 @@ public class ReviewController {
     ReviewService reviewService;
 
     @PostMapping("/")
-    public ResponseDto AddReview(@PathVariable long movieId,@RequestBody ReviewDto reviewDto){
+    public ResponseDto AddReview(@PathVariable long movieId, @RequestBody ReviewDto reviewDto) {
         return reviewService.addReview(movieId, reviewDto);
     }
 
     @GetMapping
     public ResponseEntity<?> getAllReviews(@PathVariable long movieId) {
-        List<ReviewResponseDto> reviewResponseDtoS= reviewService.getAllReviews(movieId);
+        List<ReviewResponseDto> reviewResponseDtoS = reviewService.getAllReviews(movieId);
         return new ResponseEntity<>(reviewResponseDtoS, HttpStatus.OK);
     }
 

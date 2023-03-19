@@ -18,6 +18,6 @@ public class ReviewDto {
     private String comment;
     @Max(10)
     private Integer movieRating;
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date dateTime;
 }

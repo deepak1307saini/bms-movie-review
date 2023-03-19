@@ -42,11 +42,11 @@ public class ReviewServiceImpl implements ReviewService {
     public ResponseDto addReview(long movieId, ReviewDto reviewDto) {
         reviewHelper.movieCheck(movieId);
         reviewHelper.canAdd(movieId, reviewDto.getUserId());
-        Review review = reviewHelper.toEntity(reviewDto,movieId);
+        Review review = reviewHelper.toEntity(reviewDto, movieId);
         review.setDateTime(new Date());
         reviewRepository.save(review);
 
-        return new ResponseDto(true,String.format("review for movie %d added successfully", reviewDto.getMovieId()));
+        return new ResponseDto(true, String.format("review for movie %d added successfully", reviewDto.getMovieId()));
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ReviewServiceImpl implements ReviewService {
         review.setComment(reviewDto.getComment());
         reviewRepository.save(review);
 
-        return new ResponseDto(true,String.format("review for movie %d updated successfully", review.getMovieId()));
+        return new ResponseDto(true, String.format("review for movie %d updated successfully", review.getMovieId()));
     }
 
     @Override
@@ -67,6 +67,6 @@ public class ReviewServiceImpl implements ReviewService {
         reviewHelper.canDelete(movieId, userId);
         Review review = reviewHelper.getReview(movieId, userId);
         reviewRepository.delete(review);
-        return new ResponseDto(true,String.format("review for movie Id %d deleted successfully", review.getMovieId()));
+        return new ResponseDto(true, String.format("review for movie Id %d deleted successfully", review.getMovieId()));
     }
 }

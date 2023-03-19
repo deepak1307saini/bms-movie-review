@@ -13,10 +13,10 @@ public class MovieDtoDeSerializer implements Deserializer<MovieDto> {
     @Override
     public MovieDto deserialize(String s, byte[] bytes) {
         try {
-            if(bytes == null) return null;
+            if (bytes == null) return null;
             return objectMapper.readValue(new String(bytes, StandardCharsets.UTF_8), MovieDto.class);
         } catch (Exception e) {
-            throw new SerializationException("Error while de-serializing Movie " + e.toString());
+            throw new SerializationException("Error while de-serializing Movie " + e);
         }
     }
 }

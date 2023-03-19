@@ -1,4 +1,3 @@
-
 package com.example.moviereviewSpringBootApplicaion.entity;
 
 import com.example.moviereviewSpringBootApplicaion.enums.CertificateType;
@@ -12,8 +11,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

@@ -3,16 +3,12 @@ package com.example.moviereviewSpringBootApplicaion.helper;
 import com.example.moviereviewSpringBootApplicaion.dto.MovieDto;
 import com.example.moviereviewSpringBootApplicaion.dto.MovieResponseDto;
 import com.example.moviereviewSpringBootApplicaion.entity.Movie;
-import com.example.moviereviewSpringBootApplicaion.enums.CertificateType;
-import com.example.moviereviewSpringBootApplicaion.enums.Genre;
-import com.example.moviereviewSpringBootApplicaion.enums.Language;
+import com.example.moviereviewSpringBootApplicaion.exception.DuplicateRecordException;
 import com.example.moviereviewSpringBootApplicaion.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.example.moviereviewSpringBootApplicaion.exception.DuplicateRecordException;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,9 +30,8 @@ public class MovieHelper {
     }
 
 
-
     public void canAdd(MovieDto movieDto) {
-        if (movieRepository.existsByNameAndLanguageAndMovieId(movieDto.getName(), movieDto.getLanguage(),movieDto.getId())) {
+        if (movieRepository.existsByNameAndLanguageAndMovieId(movieDto.getName(), movieDto.getLanguage(), movieDto.getId())) {
             throw new DuplicateRecordException(String.format("Movie Already Exists with Name: " + movieDto.getName() + " in Language: " + movieDto.getLanguage()));
         }
     }

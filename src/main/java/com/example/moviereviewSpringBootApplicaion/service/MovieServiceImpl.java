@@ -18,11 +18,9 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
-    private MovieRepository movieRepository;
-
-    @Autowired
     MovieHelper movieHelper;
-
+    @Autowired
+    private MovieRepository movieRepository;
 
     @Override
     public MovieResponseDto addMovie(MovieDto movieDto) {
